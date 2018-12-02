@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+		<title>DeAuth Attack</title>
+ 
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides" >
+				<section data-background="back1.gif" data-transition=convex><h1>DeAuth Attack</h1>
+				Presented By:<br>
+				Kiran RS<br>
+				5th Sem ECE<br>
+				BMSCE<br>
+				</section>
+				<section data-transition=convex><h1>Contents</h1>
+                <ul><li>Introduction</li>
+                	<li>What is DeAuth Attack?</li>
+                	<li>How does it work?</li>
+                	<li>DEMO</li>
+                	<li>How to safeguard ourselves?</li>
+                	<li>End Note</li>
+                </ul>
+				</section>
+				<section data-transition=convex>
+					<section data-transition=convex><h2>Introduction</h2>
+					<p>All the WiFi Devices used across the globe is based on IEEE 802.11 standards. These standards are revised time to time and as of now there are multiple standards defined which differs in the maximum range, bandwidth, data speed, security and efficiency.</p></section>
+					<section data-transition=convex>
+						<img src="table1.png" height="600" width="auto">
+					</section>
+				</section>
+				<section data-transition=convex>
+				<section>
+				<h2>What is DeAuth Attack</h2>
+				<p><b>Wi-Fi</b>deauthentication attack is a type of denial-of-service attack that targets communication between a user and a Wi-Fi wireless access point.</p>
+				<img src="hack.png" height="300" width="auto">
+				</section>
+				<section><h2>DeAuth!=Jammer</h2>
+					<p>A WiFi Jammer works by introducing lot of traffic in the same band of frequency as the Access Point and thereby interferes with the existing signal and distorts it and results in failure of wireless communication between the client and the AP but DeAuth doesn't introduce any interference but rather takes advantage of the management frames of the AP and exploits it.</p></section>
+			</section>
+			<section data-transition=convex><section><h2>How DeAuth Works?</h2>
+               <p>To understand how this attack works we need to know what are management frames. Management frames are wifi frames used to establish and maintain stable secure communication between AP and client. Different management frames are given below.</p>
+			</section>
+			<section>
+				<img src="mgt.png" height="600" width="auto">
+			</section>
+			<section >
+				<h2>Deauthentication Frame</h2>
+				<p>When a user sends a request to the AP to disconnect, the AP in turn replies with this frame which commands the client to successfully disconnect from the AP. The bug in this frame is that it is not encrypted and can be easily spoofed!.</p>
+				<p>So we can spoof a Deauth frame and send to all the clients connected to the AP using their MAC address which is obtained using network sniffing thereby forcing the client or clients to disconnect from the AP.</p>
+			</section>
+			<section><img src="detab.png" height="600" width="auto"></section>
+		</section>
+		<section data-transition=convex><section><h2>Demo</h2>
+			<p>Stuff Required to carry out a D-Attack</p>
+			<ul><li>ESP8266 (NODE MCU)</li>
+				<li>Arduino IDE</li>
+				<li><b>VICTIM</b></li></ul>
+</section>
+<section><img src="hackerman.gif" height="500" width="auto"></section>
+
+			</section>
+			<section data-transition=convex><section><h2>How to be Safe from DeAuth</h2>
+				<img src="safe.gif" height="400" width="auto">
+			</section>
+			<section><p>A new standard called IEEE 802.11w was released in 2009, which encrypted the deauthentication frames, so upgrading to a better router is the way to go but the catch is both the client and AP should be updated or else this doesn't help and the attack can anyways be carried out.</p></section>
+				<section><p>WiFi 802.11ac with 5Ghz has this feature inbuilt and therefore is safe but it is not preffered in public because of its short range.</p>
+				<p>Other Way to be safe from these kind of attacks is to hide your AP after you have ur devices connected to your network.</p></section>
+			</section>
+			<section data-transition=convex><h2>Resources</h2>
+				<ul><li>http://www.sysnet.ucsd.edu/~bellardo/pubs/usenix-sec03-80211dos-html/aio.html</li>
+					<li>https://en.wikipedia.org/wiki/IEEE_802.11</li>
+					<li>https://github.com/spacehuhn/esp8266_deauther</li></ul></section>
+			<section data-transition=convex>
+				<img src="end.gif" height="500" width="auto">
+				</section>	
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
